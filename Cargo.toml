@@ -1,0 +1,55 @@
+[package]
+name = "flite"
+version = "0.1.0"
+edition = "2021"
+authors = ["Niko <niko@niko.lgbt>"]
+description = "Rust bindings for the flite speech synthesis engine"
+license = "Unlicense"
+repository = "https://github.com/tazz4843/flite"
+keywords = ["flite", "speech", "synthesis", "tts", "text-to-speech"]
+categories = ["api-bindings", "multimedia::audio"]
+include = [
+  "README.md",
+	"UNLICENSE",
+	"src/**"
+]
+
+[dependencies]
+flite-sys = { version = "0.1.0", path = "sys" }
+url = { version = "2", default-features = false, optional = true }
+
+[features]
+default = [
+	"url-support", # required for examples to function
+	"cmu_grapheme_lang",
+	"cmu_grapheme_lex",
+	"cmu_indic_lang",
+	"cmu_indic_lex",
+	"cmulex",
+	"cmu_time_awb",
+	"cmu_us_awb",
+	"cmu_us_kal16",
+	"cmu_us_kal",
+	"cmu_us_rms",
+	"cmu_us_slt",
+	"usenglish",
+]
+url-support = ["dep:url"]
+
+cmu_grapheme_lang = ["flite-sys/cmu_grapheme_lang"]
+cmu_grapheme_lex = ["flite-sys/cmu_grapheme_lex"]
+cmu_indic_lang = ["flite-sys/cmu_indic_lang"]
+cmu_indic_lex = ["flite-sys/cmu_indic_lex"]
+cmulex = ["flite-sys/cmulex"]
+cmu_time_awb = ["flite-sys/cmu_time_awb"]
+cmu_us_awb = ["flite-sys/cmu_us_awb"]
+cmu_us_kal16 = ["flite-sys/cmu_us_kal16"]
+cmu_us_kal = ["flite-sys/cmu_us_kal"]
+cmu_us_rms = ["flite-sys/cmu_us_rms"]
+cmu_us_slt = ["flite-sys/cmu_us_slt"]
+usenglish = ["flite-sys/usenglish"]
+
+[workspace]
+members = [
+		"sys",
+]

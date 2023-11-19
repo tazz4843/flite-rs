@@ -1,0 +1,47 @@
+[package]
+name = "flite-sys"
+version = "0.1.0"
+edition = "2021"
+links = "flite"
+authors = ["Niko <niko@niko.lgbt>"]
+description = "Rust bindings for the flite speech synthesis engine"
+license = "Unlicense"
+repository = "https://github.com/tazz4843/flite"
+keywords = ["flite", "speech", "synthesis", "tts", "text-to-speech"]
+categories = ["api-bindings", "multimedia::audio"]
+include = [
+	"flite/config/**",
+	"flite/include/**",
+	"flite/lang/**",
+	"flite/src/**",
+	"flite/main/**",
+	"flite/tools/**",
+	"flite/configure",
+	"flite/config.sub",
+	"flite/config.guess",
+	"flite/install-sh",
+	"flite/**/Makefile*",
+	"src/**",
+	"build.rs",
+	"wrapper.h",
+]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+bindgen = "0.69"
+fs_extra = "1"
+
+[features]
+cmu_grapheme_lang = []
+cmu_grapheme_lex = []
+cmu_indic_lang = []
+cmu_indic_lex = []
+cmulex = []
+cmu_time_awb = []
+cmu_us_awb = []
+cmu_us_kal16 = []
+cmu_us_kal = []
+cmu_us_rms = []
+cmu_us_slt = []
+usenglish = []
