@@ -11,10 +11,15 @@ keywords = ["flite", "speech", "synthesis", "tts", "text-to-speech"]
 categories = ["api-bindings", "multimedia::audio"]
 include = [
 	"flite/config/**",
+	"!flite/config/config",
+	"!flite/config/system.mak",
 	"flite/include/**",
+	"!flite/include/flite_version.h",
 	"flite/lang/**",
 	"flite/src/**",
 	"flite/main/**",
+	"!flite/main/flite_lang_list.c",
+	"!flite/main/flite_voice_list.c",
 	"flite/tools/**",
 	"flite/configure",
 	"flite/config.sub",
