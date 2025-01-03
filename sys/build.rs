@@ -118,13 +118,7 @@ fn main() {
 
     // and now copy + link for every enabled feature
     let features = env::vars()
-        .filter_map(|(k, _)| {
-            if k.starts_with("CARGO_FEATURE_") {
-                Some(k[14..].to_lowercase())
-            } else {
-                None
-            }
-        })
+        .filter_map(|(k, _)| k.strip_prefix("CARGO_FEATURE_").map(|s| s.to_lowercase()))
         .collect::<Vec<_>>();
     for feature in features {
         let flite_lib = flite_root.join(format!(
