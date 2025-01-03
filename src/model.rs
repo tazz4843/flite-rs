@@ -78,7 +78,8 @@ impl Flite {
     /// Load a voice from the given path.
     ///
     /// # Arguments
-    /// * `path` - The path to the voice file
+    /// * `path` - The path to the voice file.
+    ///   This path must not contain any invalid UTF-8 or null characters.
     ///
     /// # Returns
     /// The loaded voice on success
