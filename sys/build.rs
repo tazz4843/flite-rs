@@ -62,6 +62,7 @@ fn main() {
     // configure flite
     let mut configure = std::process::Command::new("./configure");
     configure.current_dir(&flite_root);
+    configure.arg("--with-pic"); // required to avoid linking errors
     let child = configure.spawn();
     let mut child = match child {
         Ok(c) => c,
