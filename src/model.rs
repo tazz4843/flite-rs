@@ -50,6 +50,31 @@ impl Flite {
         }
     }
 
+    /// Load a generic init routine for any UTF-8 encoded language.
+    ///
+    /// Specifically, finds `utf8_grapheme_lang_init` and `utf8_grapheme_lex_init`,
+    /// then calls `flite_add_lang` with those callbacks and the language name passed in.
+    ///
+    /// # Arguments
+    /// * `lang`: language code. No validation is done here beyond checking it does not contain a
+    ///   null byte.
+    pub fn load_generic_language(&mut self, lang: &str) -> FliteResult<()> {
+        let cstr_lang = CString::new(lang).expect("language contained a null byte");
+        let retval = unsafe {
+            flite_sys::flite_add_lang(
+                cstr_lang.as_ptr(),
+                Some(flite_sys::utf8_grapheme_lang_init),
+                Some(flite_sys::utf8_grapheme_lex_init),
+            )
+        };
+
+        if retval != 1 {
+            Err(FliteError::InitFailed(retval))
+        } else {
+            Ok(())
+        }
+    }
+
     /// Load a voice from the given path.
     ///
     /// # Arguments
